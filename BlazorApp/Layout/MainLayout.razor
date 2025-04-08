@@ -2,12 +2,9 @@
 
 
 <div class="page">
-    <AuthorizeView> <div class="sidebar">
-       
-            <NavMenu/>
-       
+    <div class="sidebar">
+        <NavMenu/>
     </div>
-    </AuthorizeView>  
     <main>
         <div class="top-row px-4">
             <AuthorizeView>
@@ -28,14 +25,14 @@
     </main>
 </div>
 
-@inject AuthenticationStateProvider provider
-@inject NavigationManager navManager
+@inject AuthenticationStateProvider Provider
+@inject NavigationManager NavManager
 
 @code {
     private void Logout()
     {
-        var authStateProvider = (CustomAuthStateProvider)provider;
+        var authStateProvider = (CustomAuthStateProvider)Provider;
         authStateProvider.Logout();
-        navManager.NavigateTo("/");
+        NavManager.NavigateTo("/");
     }
 }
