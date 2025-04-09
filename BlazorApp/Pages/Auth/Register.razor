@@ -3,7 +3,7 @@
 <div class="container-fluid" >
     <div class="row">
         <div class="col-xl-6 mx-auto rounded border p-4" style="margin: 60px;">
-            <h3 class="text-center mb-3">Register</h3>
+            <h3 class="text-center mb-3">Cadastrar</h3>
             <hr>
             @if (_errors.Length > 0)
             {
@@ -17,21 +17,21 @@
                 </div> 
             }
             <div class="row mb-3">
-                <label class="col-md-4 col-form-label">Email</label>
-                <div class="col-md-8">
+                <label class="col-md-3 col-form-label">Email</label>
+                <div class="col-md-9">
                     <input class="form-control" @bind="_email"/>
                 </div>
             </div>
             
             <div class="row mb-3">
-                <label class="col-md-4 col-form-label">Senha</label>
-                <div class="col-md-8">
+                <label class="col-md-3 col-form-label">Senha</label>
+                <div class="col-md-9">
                     <input class="form-control" type="password" @bind="_password"/>
                 </div>
             </div>
             <div class="row mb-3">
-                <label class="col-md-4 col-form-label">Confirmar Senha</label>
-                <div class="col-md-8">
+                <label class="col-md-3 col-form-label">Confirmar</label>
+                <div class="col-md-9">
                     <input class="form-control" type="password" @bind="_confirmPassword"/>
                 </div>
             </div>
