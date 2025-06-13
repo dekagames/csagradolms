@@ -1,0 +1,9 @@
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Identity;
+global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+global using Microsoft.AspNetCore.Mvc;
+global using Microsoft.EntityFrameworkCore;
+global using Api.Entities;
+global using Api.Models;
+global using Api.Services;
+global using Swashbuckle.AspNetCore.Annotations;

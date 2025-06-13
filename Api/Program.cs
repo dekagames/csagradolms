@@ -1,10 +1,3 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using WebApi.Services;
-using System.Security.Claims;
-using Microsoft.OpenApi.Models;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,8 +7,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 builder.Services.AddAuthorization();
-
-builder.Services.AddIdentityApiEndpoints<IdentityUser>()
+builder.Services
+    .AddIdentityApiEndpoints<AppUser>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 
 builder.Services.AddControllers();
@@ -39,11 +32,11 @@ if (app.Environment.IsDevelopment())
     });
 }
 
-app.MapIdentityApi<IdentityUser>();
-
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.MapIdentityApi<AppUser>();
 
 app.MapControllers();
 

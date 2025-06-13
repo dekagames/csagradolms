@@ -1,23 +1,28 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
-USER $APP_UID
-WORKDIR /app
-EXPOSE 8080
-EXPOSE 8081
-
+﻿# Estágio 1: Build - Compila a aplicação
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
-ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
+
+# Copia e restaura dependências
 COPY ["BlazorApp/BlazorApp.csproj", "BlazorApp/"]
 RUN dotnet restore "BlazorApp/BlazorApp.csproj"
+
+# Copia todo o código e publica
 COPY . .
 WORKDIR "/src/BlazorApp"
-RUN dotnet build "./BlazorApp.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet publish "BlazorApp.csproj" -c Release -o /app/publish
 
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./BlazorApp.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+# Estágio 2: Runtime - Configura o Nginx
+FROM nginx:alpine AS final
+WORKDIR /usr/share/nginx/html
 
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "BlazorApp.dll"]
+# Copia apenas os arquivos estáticos publicados
+COPY --from=build /app/publish/wwwroot .
+
+# Configuração customizada do Nginx para Blazor WASM
+COPY BlazorApp/nginx.conf /etc/nginx/nginx.conf
+
+# Expõe a porta 80 (HTTP) e 443 (HTTPS - opcional)
+EXPOSE 80
+EXPOSE 443
+
+# Entrypoint padrão do Nginx (não precisa ser declarado)

@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{E671B1F2-C99C-472B-93DB-C17B00F746E6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{E671B1F2-C99C-472B-93DB-C17B00F746E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp", "BlazorApp\BlazorApp.csproj", "{64982792-3965-4D30-A37B-DEE8BB474428}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4E7A0561-8C60-4855-8C98-BDA7FF03D8D1}"
 	ProjectSection(SolutionItems) = preProject
-		compose.yaml = compose.yaml
+		docker-compose.yaml = docker-compose.yaml
 	EndProjectSection
 EndProject
 Global

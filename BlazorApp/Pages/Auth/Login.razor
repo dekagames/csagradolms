@@ -13,7 +13,7 @@
         {
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <strong>@_error</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" @onclick="CloseAlert" aria-label="Close"></button>
             </div> 
         }
         <div class="mb-3">
@@ -60,5 +60,9 @@
      {
          _error = formResult.Errors[0];
      }
+ }
+ private void CloseAlert()
+ {
+     _error = string.Empty;
  }
 }
